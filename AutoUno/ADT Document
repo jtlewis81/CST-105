@@ -1,0 +1,153 @@
+
+	This will serve as the working ADT document for this project.
+
+***********************************************************************************
+CLASS : Card
+
+Data Fields:
+		
+	// Giving each card a cardID helps me verify that my code is working properly.
+	-cardID: int
+	
+	// Each card, except wild cards, will have a color; default will be blank space for wild cards
+	-color: String
+	
+	// Each card will have a face value
+	-faceValue: String
+	
+	// Each card has an assigned point value for end of game scoring
+	// This could potentially be removed from this class and have
+	//  values assigned to each card in the class that calculates total scores.
+	-pointValue: int
+
+Constructors:
+
+	// Colored card constructor
+	+Card(cardID: int, color: String, faceValue: String, pointValue: int)
+	
+	// Wild card constructor
+	+Card(cardID: int, faceValue: String, pointValue: int)
+	
+Methods:
+
+	// Gets cardID
+	+getCardID(): int
+	
+	// Gets color
+	+getColor(): String
+	
+	// Gets faceValue
+	+getFaceValue(): String
+	
+	// Gets pointValue
+	+getPointValue(): int
+	
+	// Sets cardID
+	+setCardID(cardID: int): void
+	
+	// Sets color
+	+setColor(color: String): void
+	
+	// Sets faceValue
+	+setFaceValue(faceValue: String): void
+	
+	// Sets pointValue
+	+setPointValue(pointValue: int): void
+	
+	// Checks if two cards match in color or faceValue
+	+isPlayable(validCard: Card, card: Card): boolean
+	
+***********************************************************************************
+CLASS : Deck
+
+Data Fields:
+
+	// A deck is made up of an array of cards, mostly colored cards with a face value
+	//The deck will be the only variable with a getter and setter, all others are
+	// only for the constructor and methods
+	-deck: Card[]
+	-colors: String[]
+	-faceValues: String[]
+	
+	// There are some wild cards that do not have a color and are
+	// the equivalent of only a face value, this separate identifier helps with constructors
+	-wildCards: String[]
+	
+	// This will be a final value of 108 - the total number of cards in a new deck
+	-cards: int
+	
+
+Constructor:
+
+	// Default-only Constructor
+	+Deck()
+
+Methods:
+
+	// Shuffles the deck
+	+shuffle(): Card[]
+
+	// deck getter
+	+getDeck(): Card[]
+
+	// deck setter
+	+setDeck(deck: Card[]): void
+	
+	// Prints out each card in the deck to the console
+	+readDeck(): void
+	
+***********************************************************************************
+CLASS : Hand
+
+Data Fields:
+	
+	// A hand is an array of cards
+	-cards: Card[]
+	
+	// Returns true if the hand only has one card left in it
+	-isUno: boolean
+	
+Constructor:
+
+	// A new hand gets 7 cards from a shuffled deck
+	+Hand()
+	
+Methods:
+	
+	//getters
+	+getCards(): Card[]
+	+isUno(): boolean
+	
+	//setters
+	+setCards(cards: Card[]): void
+	+setUno(isUno: boolean): void
+	
+***********************************************************************************
+CLASS : Player
+
+Data Fields:
+
+	// Each player will have an ID (could have been called name) and their own hand of cards
+	-playerID: String
+	-playerHand: Hand
+
+Constructor:
+
+	// The constructor for a player gets a player Id and a playerHand from game implementation
+	+Player(playerID: String, playerHand: Hand)
+
+Methods:
+
+	// getters
+	+getPlayerID(): String
+	+getPlayerHand(): Hand
+
+	// setters
+	+setPlayerID(playerID: String): void
+	+setPlayerHand(playerHand: Hand): void
+	
+	// Prints out each of a player's cards to the console
+	+readPlayerHand(): void
+	
+	// Check the isUno variable and print a String to the console if playerHand only contains one card.
+	+callUno(playerHand: Hand): void
